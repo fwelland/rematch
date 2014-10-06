@@ -1,0 +1,19 @@
+apply plugin: 'java'
+apply plugin: 'groovy'
+
+sourceCompatibility = '1.8'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile     'org.projectlombok:lombok:1.14.8',
+                'org.eclipse.persistence:javax.persistence:2.1.0',
+                'org.eclipse.persistence:eclipselink:2.5.2',
+                'org.apache.derby:derby:10.10.2.0'
+
+    testCompile 'junit:junit:4.10',
+                'org.spockframework:spock-core:0.7-groovy-2.0+'
+
+}
