@@ -1,0 +1,9 @@
+/.nb-gradle/private/
+/build/
+/.gradle/2.0/taskArtifacts/cache.properties
+/.gradle/2.0/taskArtifacts/outputFileStates.bin
+/.gradle/2.0/taskArtifacts/fileHashes.bin
+/derby.log
+/.gradle/2.0/taskArtifacts/taskArtifacts.bin
+/.gradle/2.0/taskArtifacts/cache.properties.lock
+/.gradle/2.0/taskArtifacts/fileSnapshots.bin
