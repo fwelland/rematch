@@ -7,7 +7,7 @@ import lombok.*;
 
 @Entity
 @Data
-class Customer
+public class Customer
     implements Serializable
 {
     @Id

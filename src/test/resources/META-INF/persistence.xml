@@ -4,6 +4,7 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>com.fhw.rematch.Institution</class>
     <class>com.fhw.rematch.Customer</class>    
+    <class>com.fhw.rematch.Account</class>        
     <properties>
       <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:test-jpa;create=true"/>
