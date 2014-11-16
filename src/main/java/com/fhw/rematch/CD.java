@@ -1,33 +1,28 @@
 package com.fhw.rematch;
 
-
 import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import lombok.*;
 
 @Entity
-public  class CD implements Serializable {
+@Data
+public class CD 
+    implements Serializable
+{
 
-
-    @Column(unique=false,updatable=true,insertable=true,nullable=true,length=255,scale=0,precision=0)
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    public CD(){
+    @Column
+    private Long amount;
 
-    }
+    @ManyToOne
+    private Account owningAccount;
 
+    public CD()
+    {
 
-   public Long getId() {
-        return this.id;
-    }
-
-
-  public void setId (Long id) {
-        this.id = id;
     }
 
 }
-

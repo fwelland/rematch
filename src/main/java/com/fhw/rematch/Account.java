@@ -30,6 +30,11 @@ public class Account
     @JoinColumn(name="institutionId")    
     private Institution institution;
     
+    @Column private int interestRate; 
+    
+    @OneToMany(mappedBy = "owningAccount")
+    private List<CD> cds; 
+    
     public Account()
     {
         
@@ -43,4 +48,13 @@ public class Account
         }
         owners.add(c);
     }    
+    
+    public void addCD(CD cd)
+    {
+        if(null == cds)
+        {
+            cds = new ArrayList<>();
+        }
+        cds.add(cd);        
+    }
 }

@@ -55,4 +55,11 @@ class CustomerSpec
         and:
             rows1[0].instituionId == inst.id
     }
+    
+    def cleanup() 
+    {
+        em.close()
+        emFactory.close()
+    }
+    
 }

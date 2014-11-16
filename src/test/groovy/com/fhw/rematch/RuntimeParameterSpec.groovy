@@ -6,11 +6,12 @@ import spock.lang.Specification
 import java.util.Properties
 import javax.persistence.EntityManagerFactory
 import javax.persistence.Persistence
+import javax.persistence.Query
 import spock.lang.Shared
 import groovy.sql.Sql
 
 
-class InstitutionSpec 
+class RuntimeParameterSpec 
     extends Specification 
 {
     @Shared
@@ -22,25 +23,35 @@ class InstitutionSpec
     @Shared
     sql = Sql.newInstance('jdbc:derby:memory:test-jpa;create=false','app','app')
     
-    def "Verify basic institution add and persist"()
+    
+    
+    def rtParams = [traunchSize:'50', numberOfTacos:'one hundred', numberOfBurritoes:'5']
+    
+    def "Verify basic run time parameter spec/test"()
     {
         given: 
-            def inst = new Institution()
-            inst.setName('Test Bank')
-            em.getTransaction().begin()
-            em.persist(inst)
-            em.getTransaction().commit()
             
+            sql.withTransaction {
+                sql.withBatch ('insert into RuntimeParameter(name,value) values (?,?)') { ps ->
+                    rtParams.each{ k,v ->
+                        ps.addBatch( [k,v] )                    
+                    }
+                }     
+            }
+           
+            em.getTransaction().begin()
+            def Query q = em.createQuery("Select r from RuntimeParameter r");
+            def list = q.getResultList()
+            em.getTransaction().commit()
+
         expect: 
-            def rows = sql.rows('select * from Institution')
-            rows.size() == 1
-        and: 
-            rows[0].name == 'Test Bank'
+            list.size() == 3
     }
     
     def cleanup() 
     {
         em.close()
         emFactory.close()
-    }    
+    }
+    
 }
